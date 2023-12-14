@@ -54,7 +54,7 @@ Primero se analiza la base de datos; donde se identifica que los datos faltantes
 
 Por otra parte, se descartan las columnas que no se consideran necesarias para evaluar el modelo, solo se tendrá en cuenta: tamaño, categoría, sensor orion, sensor polarias, sensor vega, sensor Antares; para entrenar el modelo; esto mas explicado en el respectivo código. Además, para el entrenamiento y test solo se toman los valores que tienen etiqueta.
 ```mermaid
-erDiagram
+erDiagrama
    
 
     dataset {
