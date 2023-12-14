@@ -55,15 +55,15 @@ Primero se analiza la base de datos; donde se identifica que los datos faltantes
 Por otra parte, se descartan las columnas que no se consideran necesarias para evaluar el modelo, solo se tendrá en cuenta: tamaño, categoría, sensor orion, sensor polarias, sensor vega, sensor Antares; para entrenar el modelo; esto mas explicado en el respectivo código. Además, para el entrenamiento y test solo se toman los valores que tienen etiqueta.
 ```mermaid
 graph LR
-  datos_basicos -->|tamaño| orion
-  datos_basicos -->|categoría| orion
-  datos_basicos -->|sensor_orion| orion
-  datos_basicos -->|sensor_polaris| polaris
-  datos_basicos -->|sensor_vega| vega
-  datos_basicos -->|sensor_Antares| Antares
+  dataset -->|tamaño| orion
+  dataset -->|categoría| orion
+  dataset -->|sensor_orion| orion
+  dataset -->|sensor_polaris| polaris
+  dataset -->|sensor_vega| vega
+  dataset -->|sensor_Antares| Antares
 
-  subgraph datos_basicos
-    datos_basicos((datos_basicos))
+  subgraph dataset
+    dataset((dataset))
   end
   subgraph orion
     orion((orion))
@@ -77,6 +77,7 @@ graph LR
   subgraph Antares
     Antares((Antares))
   end
+
 ```
 
 
