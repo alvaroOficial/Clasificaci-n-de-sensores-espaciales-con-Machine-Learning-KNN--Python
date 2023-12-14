@@ -10,38 +10,43 @@ Se presenta el desarrollo y los resultados al evaluar un modelo de machine learn
 
 ### Descripción:
 La empresa realiza distintas mediciones en el espacio con cuatro satélites en órbita: orion, vega, polaris, Antares; a partir de esto y de sus datos básicos; se pretende clasificar los datos con dos posibles etiquetas Positivo o Negativo; sin embargo, según el reporte hacen falta clasificar 100 datos. Con este propósito, se plantea desarrollar un modelo de machine learning capaz de clasificar los datos faltantes.
+
+```mermaid
 erDiagram
-    datos_basicos ||..|| orion : id
-    datos_basicos ||..|| vega : id
-    datos_basicos ||..|| polaris : id
-    datos_basicos ||..|| antares : id
-    datos_basicos ||..|| clasificacion : id
-    datos_basicos {
-        int id
-        varchar nombre_muestra
-        float tamano
-        int categoria
-    }
-    orion {
-        int id
-        float sensor_orion
-    }
-    vega {
-        int id
-        float sensor_vega
-    }
-    polaris {
-        int id
-        float sensor_polaris
-    }
-    antares {
-        int id
-        float sensor_antares
-    }
-    clasificacion {
-        int id
-        varchar etiqueta
-    }
+datos_basicos ||..|| orion : id
+datos_basicos ||..|| vega : id
+datos_basicos ||..|| polaris : id
+datos_basicos ||..|| antares : id
+datos_basicos ||..|| clasificacion : id
+datos_basicos {
+int id
+varchar nombre_muestra
+float tamano
+int categoria
+}
+orion {
+int id
+float sensor_orion
+}
+vega {
+int id
+float sensor_vega
+}
+polaris {
+int id
+float sensor_polaris
+}
+antares {
+int id
+float sensor_antares
+}
+clasificacion {
+int id
+varchar etiqueta
+}
+```
+
+      
 
 
 Primero se analiza la base de datos; donde se identifica que los datos faltantes son solo aproximadamente el 3.3% del total de los datos; por lo cual resulta beneficioso ya que es más sencillo para el algoritmo identificar patrones o relaciones de manera precisa, de esta manera, la clasificación de los datos a predecir es posible que sea más precisa. Por otra parte, se tiene que la distribución de las clasificaciones esta balanceada, ya que prácticamente la mitad (148772) de los datos que si tienen etiqueta se identifican como “positivo” y casi la otra mitad (151228 etiquetas) como ” Negativo” esto a través de un conteo. Al tener un equilibrio en la cantidad de muestras para cada clase, el modelo no se sesga hacia ninguna etiqueta específica y tiene la oportunidad de aprender de manera equitativa de ambas clases.
