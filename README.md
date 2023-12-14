@@ -10,6 +10,7 @@ Se presenta el desarrollo y los resultados al evaluar un modelo de machine learn
 
 ### Descripción:
 La empresa realiza distintas mediciones en el espacio con cuatro satélites en órbita: orion, vega, polaris, Antares; a partir de esto y de sus datos básicos; se pretende clasificar los datos con dos posibles etiquetas Positivo o Negativo; sin embargo, según el reporte hacen falta clasificar 100 datos. Con este propósito, se plantea desarrollar un modelo de machine learning capaz de clasificar los datos faltantes.
+*Estructura de la base de datos:
 
 ```mermaid
 erDiagram
@@ -52,6 +53,33 @@ varchar etiqueta
 Primero se analiza la base de datos; donde se identifica que los datos faltantes son solo aproximadamente el 3.3% del total de los datos; por lo cual resulta beneficioso ya que es más sencillo para el algoritmo identificar patrones o relaciones de manera precisa, de esta manera, la clasificación de los datos a predecir es posible que sea más precisa. Por otra parte, se tiene que la distribución de las clasificaciones esta balanceada, ya que prácticamente la mitad (148772) de los datos que si tienen etiqueta se identifican como “positivo” y casi la otra mitad (151228 etiquetas) como ” Negativo” esto a través de un conteo. Al tener un equilibrio en la cantidad de muestras para cada clase, el modelo no se sesga hacia ninguna etiqueta específica y tiene la oportunidad de aprender de manera equitativa de ambas clases.
 
 Por otra parte, se descartan las columnas que no se consideran necesarias para evaluar el modelo, solo se tendrá en cuenta: tamaño, categoría, sensor orion, sensor polarias, sensor vega, sensor Antares; para entrenar el modelo; esto mas explicado en el respectivo código. Además, para el entrenamiento y test solo se toman los valores que tienen etiqueta.
+```mermaid
+graph LR
+  datos_basicos -->|tamaño| orion
+  datos_basicos -->|categoría| orion
+  datos_basicos -->|sensor_orion| orion
+  datos_basicos -->|sensor_polaris| polaris
+  datos_basicos -->|sensor_vega| vega
+  datos_basicos -->|sensor_Antares| Antares
+
+  subgraph datos_basicos
+    datos_basicos((datos_basicos))
+  end
+  subgraph orion
+    orion((orion))
+  end
+  subgraph polaris
+    polaris((polaris))
+  end
+  subgraph vega
+    vega((vega))
+  end
+  subgraph Antares
+    Antares((Antares))
+  end
+```
+
+
 Para el modelo de machine learning, inicialmente se evaluo con regresión logística, sin embargo se obtuvo un accuracy del 0.53, por lo que se analiza el modelo KNN o K-Nearest Neighbors, el cual clasifica los datos según la distancia de ese punto a evaluar hacia sus vecinos, clasifica un nuevo dato basándose en la mayoría de los datos cercanos a él. Dada la naturaleza del conjunto de datos de mediciones espaciales de satélites, donde se busca clasificar los datos como Positivos o Negativos, la simplicidad y flexibilidad de KNN resultan beneficiosas; puesto que en este caso solo se necesita realizar una clasificación binaria.
 Ya que el código se realiza en Python; en un Notebook de Jupyter, es necesario tener en cuenta las siguientes librerías: pandas, sqlite3, scikit-learn.
 
